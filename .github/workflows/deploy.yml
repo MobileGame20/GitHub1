@@ -10,15 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Test deployment on server
+      - name: Deploy repository to arsen_test folder
         uses: appleboy/ssh-action@v0.1.6
         with:
-          host: 159.223.16.58       # Замініть на IP вашого сервера, якщо необхідно
-          username: arsen2
+          host: 159.223.16.58
+          username: arsen2  # Замініть, якщо потрібно інше ім'я користувача
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            echo "CI/CD works!" > /tmp/ci_cd_test.txt
-            cat /tmp/ci_cd_test.txt
+            # Видаляємо каталог test_halunka (якщо існує) і клонюємо репозиторій у нього
+            rm -rf /home/arsen2/arsen_test
+            git clone https://github.com/MobileGame20/GitHub1.git /home/arsen2/arsen_test
