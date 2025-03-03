@@ -14,9 +14,8 @@ jobs:
         uses: appleboy/ssh-action@v0.1.6
         with:
           host: 159.223.16.58
-          username: arsen2  # Замініть, якщо потрібно інше ім'я користувача
+          username: arsen2
           key: ${{ secrets.DEPLOY_KEY }}
           script: |
-            # Видаляємо каталог test_halunka (якщо існує) і клонюємо репозиторій у нього
             rm -rf /home/arsen2/arsen_test
             git clone https://github.com/MobileGame20/GitHub1.git /home/arsen2/arsen_test
